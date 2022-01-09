@@ -1,0 +1,24 @@
+#use "topfind"
+#require "base"
+#require "stdio"
+open Base
+open Stdio
+type token =
+    | PAREN
+    | OP
+    | VAR
+
+type 'a node =
+    | Leaf
+    | Node of 'a node * 'a * 'a node
+
+let s = "(| (& 1 2) 3)"
+let tokenize s =
+    let rec aux tokens cur = function
+        | [] -> tokens
+        | h :: t when h = 10 -> printf "%s\n" s; aux tokens (h :: cur) t
+        | h :: t -> printf "%s\n" s; aux tokens (h :: cur) t
+    in aux (String.to_list s)
+
+let () =
+    tokenize s

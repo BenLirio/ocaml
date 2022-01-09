@@ -1,0 +1,12 @@
+#use "topfind"
+#require "stdio"
+open Stdio
+let rec loop state = 
+    let line = In_channel.input_line In_channel.stdin in
+    match line with
+    | None -> ()
+    | Some x -> Out_channel.output_string Out_channel.stdout x;
+        Out_channel.flush Out_channel.stdout;
+        loop state
+let () =
+    loop None
